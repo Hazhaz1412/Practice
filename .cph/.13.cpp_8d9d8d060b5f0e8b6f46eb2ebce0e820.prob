@@ -1,0 +1,1 @@
+{"name":"Local: 13","url":"c:\\Users\\Huan\\Desktop\\Codeforces\\Practice\\13.cpp","tests":[{"id":1740897563383,"input":"10 12\n1 10\n10 2\n10 3\n2 4\n4 5\n5 2\n3 6\n6 7\n7 3\n7 8\n8 9\n9 7\n","output":"4 3\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Huan\\Desktop\\Codeforces\\Practice\\13.cpp","group":"local","local":true}
