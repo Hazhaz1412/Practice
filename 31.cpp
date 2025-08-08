@@ -139,9 +139,55 @@ void sol4() {
     }
 }
 
+void sol5() {
+    int t; cin >> t; while(t--) {
+        int n; cin >> n;
+        int x = sqrt(n);
+        if(x * x != n) {
+            cout << -1 << '\n';
+            continue;
+        }
+        if(n == 0000) {
+            cout << 0 << ' ' << 0 << endl;
+            continue;
+        }
+        cout << 1 << ' ' << x-1 << endl;
+    }
+}
+
+void sol6() {
+    int t; cin >> t; while(t--) {
+        int n,k; cin >> n >> k;
+        string s; cin >> s;
+        int one = 0, zero = 0;
+        for(int i = 0; i < n; i++) {
+            if(s[i] == '1') {
+                one++;
+            }
+            else {
+                zero++;
+            }
+        }   
+        int sm = (max(one, zero) - min(one,zero))/2;
+        int bg = n/2;
+        if(k < sm || k > bg) {
+            cout << "NO\n";
+            continue;
+        }
+        int z = zero - (n/2 - k);
+        int o = one - (n/2 - k);
+        
+        if(z < 0 || o < 0 || 
+           z % 2 != 0 || o % 2 != 0) {
+            cout << "NO\n";
+        } else {
+            cout << "YES\n";
+        }
+    }
+}
 
 int main() {
     fast_io;
-    sol4();
+    sol6();
     return 0;
 }
