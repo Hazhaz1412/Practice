@@ -1,36 +1,44 @@
-#include <iostream>
-
+#include <bits/stdc++.h>
 using namespace std;
 
-int N;
-long long ans = 0;
-bool cot[14], cheo1[28], cheo2[28];
-void quaylai(int row) {
-    if (row == N) {
-        ans++;
-        return;
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int T;
+    if (!(cin >> T)) return 0;
+
+    while (T--) {
+        long long N;
+        int H;
+        char C;
+        cin >> N >> H >> C;
+
+        // Giờ 12h dạng 0..11 (0 tương đương 12)
+        int hour = H % 12;
+        bool isPM = (C == 'P');
+        int dir = 1; // 1 = cộng, -1 = trừ
+
+        for (long long i = 0; i < N; i++) {
+            int x;
+            cin >> x;
+            if (x == 0) {
+                dir = -dir;
+            } else {
+                // cộng/trừ x giờ
+                hour = (hour + dir * x) % 12;
+                if (hour < 0) hour += 12;
+
+                // lật AM/PM nếu đi qua số giờ chia hết 12
+                if ((x / 12) % 2 == 1) {
+                    isPM = !isPM;
+                }
+            }
+        }
+
+        if (hour == 0) hour = 12;
+        cout << hour << ' ' << (isPM ? 'P' : 'A') << '\n';
     }
 
-    for (int c = 0; c < N; c++) {
-        if (!cot[c] && !cheo1[row - c + N] && !cheo2[row + c]) {
-            cot[c] = cheo1[row - c + N] = cheo2[row + c] = true;
-            quaylai(row + 1);
-            cot[c] = cheo1[row - c  + N] = cheo2[row + c] = false;
-        }
-    }
-}
-int main() {
-    int T;
-    cin >> T;
-    while (T--) {
-        cin >> N;
-        if (N == 2 || N == 3) {
-            cout << 0 << endl;
-            continue;
-        }
-        quaylai(0);
-        cout << ans << endl;
-        ans = 0;
-    }
     return 0;
 }
